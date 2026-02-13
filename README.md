@@ -1,5 +1,5 @@
 # analytics-projects
-Портфолио проектов по анализу данных | Data Analytics Portfolio | Python, SQL, Visualization
+123 Портфолио проектов по анализу данных | Data Analytics Portfolio | Python, SQL, Visualization
 
 # 🎯 Data Analytics Portfolio | Портфолио аналитика данных
 
