@@ -50,17 +50,29 @@ graph LR
     C --> D[Анализ воронки]
     C --> E[Сегментный анализ]
     C --> F[Когортный анализ]
-## Этапы работы
+```
 
-### 1. Загрузка и первичный осмотр данных
+## 🔬 Ход исследования
+
+### 1. Загрузка и первичный анализ
 
 ```python
-# Загрузка библиотек и данных
 import pandas as pd
+import numpy as np
 import plotly.express as px
+import plotly.graph_objects as go
 
-mql_df = pd.read_csv('olist_marketing_qualified_leads_dataset.csv')
-deals_df = pd.read_csv('olist_closed_deals_dataset.csv')
+# Загрузка данных
+mql_df = pd.read_csv('data/raw/olist_marketing_qualified_leads_dataset.csv')
+deals_df = pd.read_csv('data/raw/olist_closed_deals_dataset.csv')
 
+print(f"MQL: {mql_df.shape}")
+print(f"Deals: {deals_df.shape}")
+```
+
+**Результат:**
+- MQL датасет: 8,000 записей, 4 колонки
+- Deals датасет: 842 записи, 14 колонок
+- Период данных: июнь 2017 — июнь 2018
 
 
