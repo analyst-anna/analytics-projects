@@ -137,7 +137,8 @@ print(f"Deals: {deals_df.shape}")
 
 ### 1. Воронка продаж
 
-<img width="1014" height="393" alt="Воронка продаж" src="Воронка продаж.png" />Рисунок 1. Воронка продаж Olist</em></p>
+<img width="1014" height="393" alt="Воронка продаж" src="https://github.com/analyst-anna/analytics-projects/blob/visuals2/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6.png" />
+<p><em>Рисунок 1. Воронка продаж Olist</em></p>
 </div>
 
 **Наблюдение:** только каждый 10‑й лид становится продавцом. Основные потери происходят на этапе между первым контактом и закрытием сделки.
