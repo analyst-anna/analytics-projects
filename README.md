@@ -136,9 +136,9 @@ print(f"Deals: {deals_df.shape}")
 ##  Визуализации
 
 ### 1. Воронка продаж
-
-<img width="1014" height="393" alt="Воронка продаж" src="https://github.com/analyst-anna/analytics-projects/blob/visuals2/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6.png" />
-<p><em>Рисунок 1. Воронка продаж Olist</em></p>
+<div align="center">
+  <img alt="Воронка продаж" src="https://github.com/analyst-anna/analytics-projects/blob/visuals2/%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6.png" width="700" />
+  <p><em>Рисунок 1. Воронка продаж Olist</em></p>
 </div>
 
 **Наблюдение:** только каждый 10‑й лид становится продавцом. Основные потери происходят на этапе между первым контактом и закрытием сделки.
@@ -146,7 +146,7 @@ print(f"Deals: {deals_df.shape}")
 ### 2. Распределение лидов по источникам
 
 <div align="center">
-  <img src="reports/figures/source_distribution.png" alt="Распределение по источникам" width="700"/>
+  <img src="https://github.com/analyst-anna/analytics-projects/blob/visuals2/%D0%A0%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BB%D0%B8%D0%B4%D0%BE%D0%B2%20%D0%BF%D0%BE%20%D0%B8%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC%20%D1%82%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B0.png" alt="Распределение по источникам" width="700"/>
   <p><em>Рисунок 2. Распределение маркетинговых лидов по источникам трафика</em></p>
 </div>
 
@@ -158,7 +158,7 @@ print(f"Deals: {deals_df.shape}")
 ### 3. Конверсия по источникам
 
 <div align="center">
-  <img src="reports/figures/conversion_by_source.png" alt="Конверсия по источникам" width="700"/>
+  <img src="https://github.com/analyst-anna/analytics-projects/blob/visuals2/%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20MQL.png" alt="Конверсия по источникам" width="700"/>
   <p><em>Рисунок 3. Конверсия MQL → Closed Deal по источникам трафика</em></p>
 </div>
 
@@ -170,7 +170,7 @@ print(f"Deals: {deals_df.shape}")
 ### 4. Топ‑10 бизнес‑сегментов
 
 <div align="center">
-  <img src="reports/figures/top_segments.png" alt="Топ-10 сегментов" width="700"/>
+  <img src="https://github.com/analyst-anna/analytics-projects/blob/visuals2/%D0%A2%D0%BE%D0%BF-10%20%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81-%D1%81%D0%B5%D0%B3%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20%D0%BF%D0%BE%20%D0%BA%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D1%83%20%D0%B7%D0%B0%D0%BA%D1%80%D1%8B%D1%82%D1%8B%D1%85%20%D1%81%D0%B4%D0%B5%D0%BB%D0%BE%D0%BA.png" alt="Топ-10 сегментов" width="700"/>
   <p><em>Рисунок 4. Топ-10 бизнес-сегментов по количеству закрытых сделок</em></p>
 </div>
 
