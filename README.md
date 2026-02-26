@@ -40,8 +40,8 @@ mql_columns = {
 deals_columns = {
     'mql_id': 'ID лида (связь с MQL)',
     'seller_id': 'ID продавца',
-    'sdr_id': 'ID Sales Development Rep',
-    'sr_id': 'ID Sales Representative',
+    'sdr_id': 'ID менеджера по развитию продаж (SDR)',
+    'sr_id': 'ID менеджера по продажам (SR)',
     'won_date': 'Дата закрытия сделки',
     'business_segment': 'Бизнес-сегмент',
     'lead_type': 'Тип лида',
