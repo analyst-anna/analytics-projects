@@ -32,7 +32,7 @@
 
 ### Что сделано
 
-- Дашборд в Power BI с подключением к Postgres (API WB) и Google Sheets
+- Дашборд в Power BI с подключением к Postgres (API WB) и Google Sheets (https://drive.google.com/file/d/1SE1mZR-XC1767Wr3jeBz6t9XjUK382oS/view?usp=sharing)
 - Расчёт валовой прибыли с учётом возвратов, логистики и комиссий
 - Автоматические топы лидеров роста и падения
 - Географический анализ продаж для складской оптимизации
