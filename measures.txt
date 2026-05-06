@@ -1,0 +1,190 @@
+Меры:
+1. Валовая прибыль = 
+SUMX (
+    'Номенклатура',
+    VAR SalesRevenue =
+        CALCULATE (
+            SUM ( 'Реализация'[retail_amount] ),
+            'Реализация'[doc_type_name] = "Продажа"
+        )
+    VAR ReturnRevenue =
+        CALCULATE (
+            SUM ( 'Реализация'[retail_amount] ),
+            'Реализация'[doc_type_name] = "Возврат"
+        )
+    VAR NetRevenue = SalesRevenue - ReturnRevenue
+    
+    VAR SalesCommission =
+        CALCULATE (
+            SUM ( 'Реализация'[ppvz_sales_commission] ),
+            'Реализация'[doc_type_name] = "Продажа"
+        )
+    VAR ReturnCommission =
+        CALCULATE (
+            SUM ( 'Реализация'[ppvz_sales_commission] ),
+            'Реализация'[doc_type_name] = "Возврат"
+        )
+    VAR NetCommission = SalesCommission - ReturnCommission
+    
+    VAR QtySold =
+        CALCULATE (
+            SUM ( 'Реализация'[quantity] ),
+            'Реализация'[doc_type_name] = "Продажа"
+        )
+    VAR QtyReturned =
+        CALCULATE (
+            SUM ( 'Реализация'[quantity] ),
+            'Реализация'[doc_type_name] = "Возврат"
+        )
+    VAR NetQty = QtySold - QtyReturned
+    
+    VAR LogisticsPerUnit = 
+        LOOKUPVALUE (
+            'Тарифы'[Cтоимость логистики],
+            'Тарифы'[subject], 'Номенклатура'[subject]
+        )
+    VAR NetLogistics = NetQty * LogisticsPerUnit
+    
+    VAR CostPerUnit = 
+        LOOKUPVALUE (
+            'Себестоимость'[Себестоимость],
+            'Себестоимость'[Штрих-код], 'Номенклатура'[barcode]
+        ) / 100   -- Делим на 100, т.к. себестоимость завышена в 100 раз
+    
+    VAR NetCost = NetQty * CostPerUnit
+    
+    RETURN
+        NetRevenue - NetCommission - NetLogistics - NetCost
+) 
+2. Возвраты_шт = 
+CALCULATE (
+    SUM ( 'Продажи'[quantity] ),
+    'Продажи'[isStorno] = 1
+)
+3. Выручка WB = 
+SUMX (
+    'Номенклатура',
+    VAR SalesAmount =
+        CALCULATE (
+            SUM ( 'Реализация'[retail_amount] ),
+            'Реализация'[doc_type_name] = "Продажа"
+        )
+    VAR ReturnAmount =
+        CALCULATE (
+            SUM ( 'Реализация'[retail_amount] ),
+            'Реализация'[doc_type_name] = "Возврат"
+        )
+    RETURN
+        SalesAmount - ReturnAmount
+)
+4. Выручка_за_период = 
+CALCULATE(
+    SUM('Продажи'[priceWithDisc]),
+    'Продажи'[isRealization] = TRUE,
+    'Продажи'[IsStorno] = 0
+) 
+5. Выручка_пред_период = 
+VAR MinDate = MIN('Календарь'[Date])
+VAR MaxDate = MAX('Календарь'[Date])
+VAR DaysCount = DATEDIFF(MinDate, MaxDate, DAY) + 1
+VAR PrevStart = MinDate - DaysCount
+VAR PrevEnd = MinDate - 1
+RETURN
+CALCULATE(
+    [Выручка WB],
+    DATESBETWEEN('Календарь'[Date], PrevStart, PrevEnd)
+) 
+6. Заказов_шт = 
+CALCULATE (
+    SUM ( 'Заказы'[quantity] ),
+    'Заказы'[isCancel] = FALSE
+) Изменение_выручки = 
+VAR CurrentValue = [Выручка WB]
+VAR PreviousValue = [Выручка_пред_период]
+RETURN
+IF(
+    NOT ISBLANK(PreviousValue),
+    CurrentValue - PreviousValue,
+    BLANK()
+) 
+7. Изменение_выручки_% = 
+DIVIDE(
+    [Изменение_выручки],
+    [Выручка_пред_период]
+) 
+8. Комиссия WB (руб.) = 
+CALCULATE (
+    SUM ( 'Реализация'[ppvz_sales_commission] ),
+    'Реализация'[doc_type_name] = "Продажа"
+)
+- CALCULATE (
+    SUM ( 'Реализация'[ppvz_sales_commission] ),
+    'Реализация'[doc_type_name] = "Возврат"
+) 
+9. Комиссия WB % = 
+VAR Commission = [Комиссия WB (руб.)]
+VAR Revenue =
+    CALCULATE (
+        SUM ( 'Продажи'[priceWithDisc] ),
+        'Продажи'[isStorno] = 0
+    )
+RETURN
+    DIVIDE ( Commission, Revenue ) 
+10. Логистика = 
+SUMX (
+    'Номенклатура',
+    VAR QtySold =
+        CALCULATE (
+            SUM ( 'Реализация'[quantity] ),
+            'Реализация'[doc_type_name] = "Продажа"
+        )
+    VAR QtyReturned =
+        CALCULATE (
+            SUM ( 'Реализация'[quantity] ),
+            'Реализация'[doc_type_name] = "Возврат"
+        )
+    VAR NetQty = QtySold - QtyReturned
+    VAR LogisticsPerUnit = 
+        LOOKUPVALUE (
+            'Тарифы'[Cтоимость логистики],
+            'Тарифы'[subject], 'Номенклатура'[subject]
+        )
+    RETURN
+        NetQty * LogisticsPerUnit
+) 
+11. Рентабельность = 
+DIVIDE ( [Валовая прибыль], [Выручка WB] ) 
+12. ROI = 
+VAR GrossProfit = [Валовая прибыль]
+
+VAR Investment = 
+    SUMX(
+        'Реализация',
+        VAR NetQty = 
+            SWITCH(
+                TRUE(),
+                'Реализация'[doc_type_name] = "Продажа", 'Реализация'[quantity],
+                'Реализация'[doc_type_name] = "Возврат", -ABS('Реализация'[quantity]),
+                0
+            )
+        VAR Barcode = 'Реализация'[barcode]
+        VAR CostPerUnit = 
+            CALCULATE(
+                AVERAGE('Себестоимость'[Себестоимость]),
+                FILTER('Себестоимость', 'Себестоимость'[Штрих-код] = Barcode)
+            )
+        RETURN
+            NetQty * CostPerUnit
+    )
+
+RETURN
+    DIVIDE(GrossProfit, Investment, 0) 
+13. таблица Календарь = 
+ADDCOLUMNS (
+    CALENDARAUTO (),
+    "Год", YEAR ( [Date] ),
+    "МесяцНомер", MONTH ( [Date] ),
+    "Месяц", FORMAT ( [Date], "MMMM" ),
+    "Квартал", "Q" & QUARTER ( [Date] ),
+    "ДеньНедели", FORMAT ( [Date], "dddd" )
+)
