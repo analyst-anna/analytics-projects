@@ -44,7 +44,7 @@
 
 ### Модель данных (Star Schema)
 
-![Data Model](модель данных.png)
+![Модель данных](https://raw.githubusercontent.com/analyst-anna/analytics-projects/grathic4/%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85.png)
 
 **Ключевые связи:**
 - `Номенклатура` ← → `Реализация` (по barcode)
