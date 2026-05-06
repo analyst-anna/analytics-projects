@@ -44,7 +44,7 @@
 
 ### Модель данных (Star Schema)
 
-![Data Model](visuals/data_model.png)
+![Data Model](модель данных.png)
 
 **Ключевые связи:**
 - `Номенклатура` ← → `Реализация` (по barcode)
