@@ -9,9 +9,8 @@
 *   [ Проект 2: A/B тестирование маркетинговой кампании| Conversion Optimization](../project-2-AB-test/README.md) Оценка эффективности рекламной кампании и определение, стоит ли масштабировать бюджет.
 *   [ Проект 3: Анализ воронки продаж Olist](../project-3-olist-sales-funnel-analysys/README.md) Анализ маркетинговой воронки интернет-магазина Olist. Исследование пути клиента от первого контакта до закрытия сделки.
 *   [Проект 4: Финансовый дашборд Wildberries FBS | Power BI](../poject-4-wildberries-finance-dashboard/README.md)  Анализ продаж, рентабельности и топов товаров для ИП..., занимающегося продажами на WB
-*   * [Проект 4: Финансовый дашборд Wildberries FBS | Power BI](README.md#проект-4--финансовый-дашборд-wildberries-fbs--power-bi)
-    * * [Проект 4: Финансовый дашборд Wildberries FBS | Power BI](https://github.com/analyst-anna/analytics-projects/blob/main/README.md#проект-4--финансовый-дашборд-wildberries-fbs--power-bi)
-    * [Проект 4: Финансовый дашборд Wildberries FBS | Power BI](https://github.com/analyst-anna/analytics-projects/blob/main/README.md#проект-4--финансовый-дашборд-wildberries-fbs--power-bi)
+*  [Проект 4: Финансовый дашборд Wildberries FBS | Power BI](https://github.com/analyst-anna/analytics-projects/blob/main/README.md#проект-4--финансовый-дашборд-wildberries-fbs--power-bi)
+*  [Проект 4: Финансовый дашборд Wildberries FBS | Power BI](README.md#проект-4--финансовый-дашборд-wildberries-fbs--power-bi)
 ---
 
 ## 📁 Проект 1: Анализ Яндекс Такси | Key Metrics Dashboard
